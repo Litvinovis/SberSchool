@@ -1,3 +1,7 @@
+*.xml
+*.iml
+*.gitignore
+
 # Compiled class file
 *.class
 
