@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="windows-1251">
+  <title>Услуги</title>
+</head>
+
+<body>
+<div th:each="service : ${services}">
+  <a th:href="@{/services/{id}(id=${service.getId()})}"
+     th:text="${service.getName() + ', ' + service.getCost() + ', ' + service.getDescription()}">user</a>
+</div>
+
+</body>
+</html>

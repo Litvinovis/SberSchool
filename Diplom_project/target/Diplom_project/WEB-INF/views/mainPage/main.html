@@ -6,9 +6,8 @@
 </head>
 
 <body>
-<div th:each="service : ${services}">
-  <a th:href="@{/services/{id}(id=${service.getId()})}"
-     th:text="${service.getName() + ', ' + service.getCost() + ', ' + service.getDescription()}">user</a>
+<div>
+  <a href="/services">Услуги</a>
 </div>
 
 </body>

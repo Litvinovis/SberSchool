@@ -35,7 +35,7 @@ public class ServicesDAO {
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Person";
+            String SQL = "SELECT * FROM services";
             ResultSet resultSet = statement.executeQuery(SQL);
             while(resultSet.next()) {
                 Services temp = new Services();
