@@ -28,6 +28,7 @@ public class ServicesController{
     }
     @GetMapping("/{id}")
     public String show (@PathVariable("id") int id, Model model) {
-        return null;
+        model.addAttribute("serviceNu", ServicesDAO.show(id));
+        return "servicesPage/show";
     }
 }

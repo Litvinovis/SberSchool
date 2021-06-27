@@ -53,4 +53,28 @@ public class ServicesDAO {
 
         return services;
     }
+
+    public static Services show(int id) {
+        Services service = null;
+
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT * FROM services WHERE id=?");
+
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
+            service = new Services();
+
+            service.setId(resultSet.getInt("id"));
+            service.setName(resultSet.getString("name"));
+            service.setCost(resultSet.getInt("cost"));
+            service.setDescription(resultSet.getString("description"));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return service;
+    }
 }
