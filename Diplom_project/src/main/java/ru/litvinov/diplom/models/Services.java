@@ -3,12 +3,18 @@ package ru.litvinov.diplom.models;
 public class Services {
     private int id;
     private String name;
+    private int cost;
+    private String description;
 
     public Services() {
     }
 
-    private int cost;
-    private String description;
+    public Services(int id, String name, int cost, String description) {
+        this.id = id;
+        this.name = name;
+        this.cost = cost;
+        this.description = description;
+    }
 
     public int getId() {
         return id;
@@ -39,13 +45,6 @@ public class Services {
     }
 
     public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Services(int id, String name, int cost, String description) {
-        this.id = id;
-        this.name = name;
-        this.cost = cost;
         this.description = description;
     }
 }

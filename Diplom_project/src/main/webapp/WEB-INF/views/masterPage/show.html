@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="windows-1251">
+  <title>Описание услуги</title>
+</head>
+
+<body>
+
+<p th:text="${'Имя: ' + master.getName()}">VALUE</p>
+<p th:text="${'Специальность: ' + master.getArea()}">VALUE</p>
+<p th:text="${'Биография: ' + master.getBio()}">VALUE</p>
+
+</body>
+</html>

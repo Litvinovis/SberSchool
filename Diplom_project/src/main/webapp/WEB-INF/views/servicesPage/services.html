@@ -8,8 +8,10 @@
 <body>
 <div th:each="service : ${services}">
   <a th:href="@{/services/{id}(id=${service.getId()})}"
-     th:text="${service.getName() + ', ' + service.getCost() + ', ' + service.getDescription()}">user</a>
+     th:text="${service.getName() + ', ' + service.getCost()}">user</a>
 </div>
+
+<p> <a href="/main">Вернуться на главную</a> </p>
 
 </body>
 </html>
