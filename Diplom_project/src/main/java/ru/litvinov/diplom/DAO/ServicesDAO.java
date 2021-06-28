@@ -1,6 +1,7 @@
 package ru.litvinov.diplom.DAO;
 
 import org.springframework.stereotype.Component;
+import ru.litvinov.diplom.models.Master;
 import ru.litvinov.diplom.models.Services;
 
 import java.sql.*;
@@ -76,5 +77,20 @@ public class ServicesDAO {
         }
 
         return service;
+    }
+
+    public static void save(Services services) {
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("INSERT INTO services VALUES(1, ?, ?, ?)");
+
+            preparedStatement.setString(1, services.getName());
+            preparedStatement.setInt(2, services.getCost());
+            preparedStatement.setString(3, services.getDescription());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

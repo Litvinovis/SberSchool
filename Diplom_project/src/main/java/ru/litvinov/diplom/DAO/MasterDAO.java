@@ -78,4 +78,19 @@ public class MasterDAO {
 
         return master;
     }
+
+    public void save(Master master) {
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("INSERT INTO masters VALUES(1, ?, ?, ?)");
+
+            preparedStatement.setString(1, master.getName());
+            preparedStatement.setString(2, master.getArea());
+            preparedStatement.setString(3, master.getBio());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
