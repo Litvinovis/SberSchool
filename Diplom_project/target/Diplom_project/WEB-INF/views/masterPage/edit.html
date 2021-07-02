@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="windows-1251">
-  <title>Наши мастера</title>
+  <title>Редактировать мастера</title>
   <link rel="stylesheet" href="/static/style.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,30 +39,17 @@
   </div>
 </nav>
 
-<div class="container mt-5">
-  <table class="table table-bordered tableTab">
-    <thead>
-    <tr>
-      <th scope="col" width="250">Мастер</th>
-      <th scope="col" width="100">Специальность</th>
-    </tr>
-    </thead>
-    <tr th:each="master : ${masters}">
-      <td> <a th:href="@{/masters/{id}(id=${master.getId()})}" th:text="${master.getName()}"> </a> </td>
-      <td th:text="${master.getArea()}">Cost</td>
-    </tr>
-  </table>
-</div>
-
-<div class="container mt-5 my-2">
-  <a href="/masters/new">Добавить мастера</a> </div>
-
-<div>
-  <p> <a class="text-white">1</a> </p>
-</div>
-
-<div>
-  <p> <a class="text-white">1</a> </p>
+<div class="container my-5">
+  <form th:method="PATCH" th:action="@{/masters/{id}(id=${master.getId()})}" th:object="${master}">
+    <label for="name" >Введите имя</label>
+    <input type="text" th:field="*{name}", id="name"/>
+    <label for="area" >Введите специальность</label>
+    <input type="text" th:field="*{area}", id="area"/>
+    <label for="bio" >Введите биографию</label>
+    <input type="text" th:field="*{bio}", id="bio"/>
+    <br/>
+    <input type="submit" value="Обновить">
+  </form>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-bottom justify-content-center">
@@ -70,7 +57,6 @@
     <p class="text-center">Разработано студией "Кривые ручки" по заказу правительства рептилоидов в 2021 году </p>
   </ul>
 </nav>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

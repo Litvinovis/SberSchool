@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="windows-1251">
-  <title>Описание услуги</title>
+  <title>Описание мастера</title>
   <link rel="stylesheet" href="/static/style.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,10 +38,21 @@
     </ul>
   </div>
 </nav>
+
+
 <div class="container my-5">
 <p th:text="${'Имя: ' + master.getName()}">VALUE</p>
 <p th:text="${'Специальность: ' + master.getArea()}">VALUE</p>
 <p th:text="${'Биография: ' + master.getBio()}">VALUE</p>
+</div>
+
+<div class="container my-1">
+
+<a th:href="@{/masters/{id}/edit(id=${master.getId()})}">Редактировать</a> </div>
+
+<div class="container my-1">
+<form th:method="DELETE" th:action="@{/masters/{id}(id=${master.getId()})}">
+  <input type="submit" value="Delete"/> </form>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-bottom justify-content-center">
@@ -49,6 +60,7 @@
     <p class="text-center">Разработано студией "Кривые ручки" по заказу правительства рептилоидов в 2021 году </p>
   </ul>
 </nav>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

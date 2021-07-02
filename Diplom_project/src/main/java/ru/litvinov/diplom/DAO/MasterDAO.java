@@ -14,6 +14,7 @@ public class MasterDAO {
     private static final String URL = "jdbc:postgresql://localhost:5432/servicesDB";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "12345";
+    private static int counter = 0;
 
     private static Connection connection;
 
@@ -47,6 +48,7 @@ public class MasterDAO {
                 temp.setBio(resultSet.getString("biography"));
 
                 masters.add(temp);
+                counter++;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -82,11 +84,41 @@ public class MasterDAO {
     public void save(Master master) {
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO masters VALUES(1, ?, ?, ?)");
+                    connection.prepareStatement("INSERT INTO masters VALUES(?, ?, ?, ?)");
 
-            preparedStatement.setString(1, master.getName());
-            preparedStatement.setString(2, master.getArea());
-            preparedStatement.setString(3, master.getBio());
+            preparedStatement.setInt(1, ++counter);
+            preparedStatement.setString(2, master.getName());
+            preparedStatement.setString(3, master.getArea());
+            preparedStatement.setString(4, master.getBio());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void update(int id, Master updateMaster) {
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("UPDATE masters SET name=?, area=?, bio=? WHERE id=?");
+
+            preparedStatement.setString(1, updateMaster.getName());
+            preparedStatement.setString(2, updateMaster.getArea());
+            preparedStatement.setString(3, updateMaster.getBio());
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void delete(int id) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM masters WHERE id=?");
+
+            preparedStatement.setInt(1, id);
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
