@@ -29,6 +29,10 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.22" />
           <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.5.1" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.5.1" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-crypto:5.5.1" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.5.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
