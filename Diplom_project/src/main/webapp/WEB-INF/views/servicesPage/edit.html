@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="windows-1251">
-  <title>Контакты</title>
+  <title>Редактировать услугу</title>
   <link rel="stylesheet" href="/static/style.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,24 +41,19 @@
     </ul>
   </div>
 </nav>
+
 <div class="container my-5">
-  <p class="text-justify">Адрес: Россия, г. Казань, Улица Гладиаторская, 38\2, вход со двора, метро Кремлевская</p>
-
-  <p class="text-justify">Мы работаем с 10:00 до 20:00, без выходных.</p>
-
-  <p class="text-justify">Телефон: +7 (987) 654-32-10</p>
-
-  <p class="text-justify">E-mail: Krasota@localhost.ru</p>
-
-  <img src="https://frbk.ru/wp-content/uploads/2017/10/kak-nas-nayti.png" class="img-rounded pull-xs-left" alt="Responsive image" th:width="500">
-
-
+  <form th:method="PATCH" th:action="@{/services/{id}(id=${service.getId()})}" th:object="${service}">
+    <label for="name" >Введите название</label>
+    <input type="text" th:field="*{name}", id="name"/>
+    <label for="cost" >Введите стоимость</label>
+    <input type="text" th:field="*{cost}", id="cost"/>
+    <label for="description" >Введите описание</label>
+    <input type="text" th:field="*{description}", id="description"/>
+    <br/>
+    <input type="submit" value="Обновить">
+  </form>
 </div>
-
-<div>
-  <p> <a class="text-white">1</a> </p>
-</div>
-
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-bottom justify-content-center">
   <ul class="navbar-nav text-white" >

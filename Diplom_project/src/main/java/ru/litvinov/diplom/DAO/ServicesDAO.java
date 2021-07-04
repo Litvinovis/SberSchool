@@ -93,4 +93,33 @@ public class ServicesDAO {
             throwables.printStackTrace();
         }
     }
+
+    public static void update(int id, Services updateServices) {
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("UPDATE services SET name=?, cost=?, description=? WHERE id=?");
+
+            preparedStatement.setString(1, updateServices.getName());
+            preparedStatement.setInt(2, updateServices.getCost());
+            preparedStatement.setString(3, updateServices.getDescription());
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void delete(int id) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM services WHERE id=?");
+
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

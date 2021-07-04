@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="windows-1251">
-    <title>Описание услуги</title>
+    <title>Запись на приём</title>
     <link rel="stylesheet" href="/static/style.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,14 +42,18 @@
     </div>
 </nav>
 <div class="container my-5">
-<p th:text="${'Услуга: ' + serviceNu.getName()}">VALUE</p>
-<p th:text="${'Стоимость: ' + serviceNu.getCost()}">VALUE</p>
-<p th:text="${'Описание: ' + serviceNu.getDescription()}">VALUE</p>
-</div>
-
-<div class="container my-1">
-    <form  th:method="GET" th:action="@{/services}">
-        <input type="submit" value="К списку услуг"/> </form>
+    <form th:method="POST" th:action="@{/slots}" th:object="${slots}">
+        <p><label for="name" >Введите ваше имя</label>
+        <input type="text" th:field="*{name}", id="name"/></p>
+        <p> <label for="day" >Введите день посещения</label>
+        <input type="text" th:field="*{day}", id="day"/></p>
+        <p> <label for="day" >Введите время посещения</label>
+        <input type="text" th:field="*{time}", id="time"/></p>
+        <p> <label for="phoneNumber" >Введите ваш номер телефона</label>
+        <input type="text" th:field="*{phoneNumber}", id="phoneNumber"/></p>
+        <br/>
+        <input type="submit" value="Оставить заявку">
+    </form>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-bottom justify-content-center">

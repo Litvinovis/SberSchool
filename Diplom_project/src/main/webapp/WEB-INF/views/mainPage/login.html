@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="windows-1251">
-  <title>Контакты</title>
+  <title>Вход администратора</title>
   <link rel="stylesheet" href="/static/style.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,18 +41,20 @@
     </ul>
   </div>
 </nav>
-<div class="container my-5">
-  <p class="text-justify">Адрес: Россия, г. Казань, Улица Гладиаторская, 38\2, вход со двора, метро Кремлевская</p>
 
-  <p class="text-justify">Мы работаем с 10:00 до 20:00, без выходных.</p>
+<div class="container text-center my-5">
+  <form th:method="GET" th:action="@{/main/admin}">
+    <div> <label>Логин</label>
+    <input type="text"/>
+    <label>Пароль</label>
+    <input type="text"/></div>
+    <br/>
+    <div><input type="submit" value="Войти"></div>
+  </form>
+</div>
 
-  <p class="text-justify">Телефон: +7 (987) 654-32-10</p>
-
-  <p class="text-justify">E-mail: Krasota@localhost.ru</p>
-
-  <img src="https://frbk.ru/wp-content/uploads/2017/10/kak-nas-nayti.png" class="img-rounded pull-xs-left" alt="Responsive image" th:width="500">
-
-
+<div>
+  <p> <a class="text-white">1</a> </p>
 </div>
 
 <div>
@@ -60,11 +62,13 @@
 </div>
 
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-bottom justify-content-center">
-  <ul class="navbar-nav text-white" >
-    <p class="text-center">Разработано студией "Кривые ручки" по заказу правительства рептилоидов в 2021 году </p>
-  </ul>
-</nav>
+<div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-bottom justify-content-center">
+    <ul class="navbar-nav text-white" >
+      <p class="text-center">Разработано студией "Кривые ручки" по заказу правительства рептилоидов в 2021 году </p>
+    </ul>
+  </nav>
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

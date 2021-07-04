@@ -14,4 +14,9 @@ public class AboutController {
     public String helloPage(Model model) {
         return "mainPage/about";
     }
+
+    @GetMapping("/admin")
+    public String helloPageAdmin(Model model) {
+        return "mainPage/aboutAdmin";
+    }
 }

@@ -2,15 +2,14 @@ package ru.litvinov.diplom.DAO;
 
 import org.springframework.stereotype.Component;
 import ru.litvinov.diplom.models.Master;
-import ru.litvinov.diplom.models.Services;
+import ru.litvinov.diplom.models.Slots;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MasterDAO {
-    // так делать не хорошо, нужно в отдельный файл
+public class SlotsDAO {
     private static final String URL = "jdbc:postgresql://localhost:5432/servicesDB";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "12345";
@@ -31,63 +30,64 @@ public class MasterDAO {
         }
     }
 
-    public static List<Master> index() {
-        List<Master> masters = new ArrayList<>();
+    public static List<Slots> index() {
+        List<Slots> slots = new ArrayList<>();
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM masters";
+            String SQL = "SELECT * FROM slots";
             ResultSet resultSet = statement.executeQuery(SQL);
             while(resultSet.next()) {
-                Master temp = new Master();
+                Slots temp = new Slots();
 
-                temp.setId(resultSet.getInt("id"));
+                temp.setPhoneNumber(resultSet.getString("phoneNumber"));
                 temp.setName(resultSet.getString("name"));
-                temp.setArea(resultSet.getString("area"));
-                temp.setBio(resultSet.getString("biography"));
+                temp.setDay(resultSet.getString("day"));
+                temp.setTime(resultSet.getString("time"));
+                temp.setId(resultSet.getInt("id"));
 
-                masters.add(temp);
+                slots.add(temp);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-        return masters;
+        return slots;
     }
 
-    public static Master show(int id) {
-        Master master = null;
+    public static Slots show(int id) {
+        Slots slots = null;
 
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("SELECT * FROM masters WHERE id=?");
+                    connection.prepareStatement("SELECT * FROM slots WHERE id=?");
 
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
-            master = new Master();
+            slots = new Slots();
 
-            master.setId(resultSet.getInt("id"));
-            master.setName(resultSet.getString("name"));
-            master.setArea(resultSet.getString("area"));
-            master.setBio(resultSet.getString("biography"));
+            slots.setId(resultSet.getInt("id"));
+            slots.setPhoneNumber(resultSet.getString("phoneNumber"));
+            slots.setName(resultSet.getString("name"));
+            slots.setDay(resultSet.getString("day"));
+            slots.setTime(resultSet.getString("time"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return master;
+        return slots;
     }
 
-    public void save(Master master) {
+    public static void save(Slots slots) {
         int counter = 0;
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM masters";
+            String SQL = "SELECT * FROM slots";
             ResultSet resultSet = statement.executeQuery(SQL);
             while(resultSet.next()) {
-                counter++;
+              counter++;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -95,12 +95,13 @@ public class MasterDAO {
 
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO masters VALUES(?, ?, ?, ?)");
+                    connection.prepareStatement("INSERT INTO slots VALUES(?, ?, ?, ?, ?)");
 
             preparedStatement.setInt(1, ++counter);
-            preparedStatement.setString(2, master.getName());
-            preparedStatement.setString(3, master.getArea());
-            preparedStatement.setString(4, master.getBio());
+            preparedStatement.setString(2, slots.getName());
+            preparedStatement.setString(3, slots.getDay());
+            preparedStatement.setString(4, slots.getTime());
+            preparedStatement.setString(5, slots.getPhoneNumber());
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -108,26 +109,10 @@ public class MasterDAO {
         }
     }
 
-    public void update(int id, Master updateMaster) {
-        try {
-            PreparedStatement preparedStatement =
-                    connection.prepareStatement("UPDATE masters SET name=?, area=?, bio=? WHERE id=?");
-
-            preparedStatement.setString(1, updateMaster.getName());
-            preparedStatement.setString(2, updateMaster.getArea());
-            preparedStatement.setString(3, updateMaster.getBio());
-            preparedStatement.setInt(4, id);
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public void delete(int id) {
+    public static void delete(int id) {
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM masters WHERE id=?");
+            preparedStatement = connection.prepareStatement("DELETE FROM slots WHERE id=?");
 
             preparedStatement.setInt(1, id);
 

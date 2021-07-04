@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="windows-1251">
-  <title>Контакты</title>
+  <title>Запись</title>
   <link rel="stylesheet" href="/static/style.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,44 +21,43 @@
   <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent" >
     <ul class="navbar-nav ">
       <li class="nav-item mx-4">
-        <a class="nav-link text-white" href="/main">Главная страница</a>
+        <a class="nav-link text-white" href="/main/admin">Главная страница</a>
       </li>
       <li class="nav-item mx-4">
-        <a class="nav-link text-white" href="/services">Наши услуги</a>
+        <a class="nav-link text-white" href="/services/admin">Наши услуги</a>
       </li>
       <li class="nav-item mx-4">
-        <a class="nav-link text-white" href="/masters">Наши мастера</a>
+        <a class="nav-link text-white" href="/masters/admin">Наши мастера</a>
       </li>
       <li class="nav-item mx-4">
-        <a class="nav-link text-white" href="/about">О нас</a>
+        <a class="nav-link text-white" href="/about/admin">О нас</a>
       </li>
       <li class="nav-item mx-4">
-        <a class="nav-link text-white" href="/contacts">Контакты</a>
+        <a class="nav-link text-white" href="/contacts/admin">Контакты</a>
       </li>
       <li class="nav-item mx-4">
-        <a class="nav-link text-white" href="/slots/new">Оставить заявку</a>
+        <a class="nav-link text-white" href="/slots/admin">Заявки</a>
       </li>
     </ul>
   </div>
 </nav>
+
 <div class="container my-5">
-  <p class="text-justify">Адрес: Россия, г. Казань, Улица Гладиаторская, 38\2, вход со двора, метро Кремлевская</p>
-
-  <p class="text-justify">Мы работаем с 10:00 до 20:00, без выходных.</p>
-
-  <p class="text-justify">Телефон: +7 (987) 654-32-10</p>
-
-  <p class="text-justify">E-mail: Krasota@localhost.ru</p>
-
-  <img src="https://frbk.ru/wp-content/uploads/2017/10/kak-nas-nayti.png" class="img-rounded pull-xs-left" alt="Responsive image" th:width="500">
-
-
+  <p th:text="${'Имя: ' + slotsNu.getName()}">VALUE</p>
+  <p th:text="${'Телефон: ' + slotsNu.getPhoneNumber()}">VALUE</p>
+  <p th:text="${'Дата записи: ' + slotsNu.getDay()}">VALUE</p>
+  <p th:text="${'Время записи: ' + slotsNu.getTime()}">VALUE</p>
 </div>
 
-<div>
-  <p> <a class="text-white">1</a> </p>
+<div class="container my-1">
+  <form th:method="DELETE" th:action="@{/slots/{id}(id=${slotsNu.getId()})}">
+    <input type="submit" value="Удалить"/> </form>
 </div>
 
+<div class="container my-1">
+  <form  th:method="GET" th:action="@{/slots/admin}">
+    <input type="submit" value="Ко всем заявкам"/> </form>
+</div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-bottom justify-content-center">
   <ul class="navbar-nav text-white" >

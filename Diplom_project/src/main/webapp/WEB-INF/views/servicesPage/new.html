@@ -35,11 +35,14 @@
             <li class="nav-item mx-4">
                 <a class="nav-link text-white" href="/contacts">Контакты</a>
             </li>
+            <li class="nav-item mx-4">
+                <a class="nav-link text-white" href="/slots/new">Оставить заявку</a>
+            </li>
         </ul>
     </div>
 </nav>
 <div class="container my-5">
-    <form th:method="POST" th:action="@{/services}" th:object="${service}">
+    <form th:method="POST" th:action="@{/services/admin}" th:object="${service}">
         <label for="name" >Введите название</label>
         <input type="text" th:field="*{name}", id="name"/>
         <label for="cost" >Введите стоимость</label>

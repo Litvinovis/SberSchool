@@ -25,11 +25,25 @@ public class MasterController {
         model.addAttribute("masters", MasterDAO.index());
         return "masterPage/masters";
     }
+
+    @GetMapping("/admin")
+    public String helloPageAdmin(Model model) {
+        model.addAttribute("masters", MasterDAO.index());
+        return "masterPage/mastersAdmin";
+    }
+
     @GetMapping("/{id}")
     public String show (@PathVariable("id") int id, Model model) {
         model.addAttribute("master", MasterDAO.show(id));
         return "masterPage/show";
     }
+
+    @GetMapping("/{id}/admin")
+    public String showAdmin (@PathVariable("id") int id, Model model) {
+        model.addAttribute("master", MasterDAO.show(id));
+        return "masterPage/showAdmin";
+    }
+
 
     @GetMapping("/new")
     public String newMaster(Model model) {
@@ -37,10 +51,10 @@ public class MasterController {
         return "masterPage/new";
     }
 
-    @PostMapping()
+    @PostMapping("/admin")
     public String createMaster(@ModelAttribute("master") Master master) {
         masterDAO.save(master);
-        return "redirect:/masters";
+        return "redirect:/masters/admin";
     }
 
     @GetMapping("/{id}/edit")
@@ -54,12 +68,12 @@ public class MasterController {
         if (bindingResult.hasErrors())
             return "masterPage/edit";
         masterDAO.update(id, master);
-        return "redirect:/masters";
+        return "redirect:/masters/admin";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         masterDAO.delete(id);
-        return "redirect:/masters";
+        return "redirect:/masters/admin";
     }
 }

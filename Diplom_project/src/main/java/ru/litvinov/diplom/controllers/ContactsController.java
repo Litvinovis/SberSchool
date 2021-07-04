@@ -13,4 +13,9 @@ public class ContactsController {
     public String helloPage(Model model) {
         return "mainPage/contacts";
     }
+
+    @GetMapping("/admin")
+    public String helloPageAdmin(Model model) {
+        return "mainPage/contactsAdmin";
+    }
 }
